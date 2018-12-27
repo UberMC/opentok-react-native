@@ -25,18 +25,7 @@ public class OTPublisherLayout extends FrameLayout{
 
     public void createPublisherView(String publisherId) {
 
-        
         ConcurrentHashMap<String, Publisher> mPublishers = sharedState.getPublishers();
-        //put this in a while loop? until it's not null with a sleep timer?
-        if (mPublishers.get(publisherId) == null){
-            return;
-        }
-        if (mPublishers == null){
-            return;
-        }
-        if (BaseVideoRenderer == null){
-            return;
-        }
         mPublishers.get(publisherId).setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE,
                 BaseVideoRenderer.STYLE_VIDEO_FILL);
         FrameLayout mPublisherViewContainer = new FrameLayout(getContext());
