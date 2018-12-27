@@ -113,9 +113,9 @@ public class OTSessionManager extends ReactContextBaseJavaModule
                                         .audioBitrate(audioBitrate)
                                         .resolution(Publisher.CameraCaptureResolution.valueOf(resolution))
                                         .frameRate(Publisher.CameraCaptureFrameRate.valueOf(frameRate))
-                                        .capturer(capturer)                                        
+                                        .capturer(capturer)
                                         .build();
-            mPublisher.setPublisherVideoType(PublisherKit.PublisherKitVideoType.PublisherKitVideoTypeScreen);                    
+            mPublisher.setPublisherVideoType(PublisherKit.PublisherKitVideoType.PublisherKitVideoTypeScreen);
         } else {
             mPublisher = new Publisher.Builder(this.getReactApplicationContext())
                                         .audioTrack(audioTrack)
@@ -202,7 +202,9 @@ public class OTSessionManager extends ReactContextBaseJavaModule
     public void disconnectSession(Callback callback) {
 
         Session mSession = sharedState.getSession();
+        if (mSession != null){
         mSession.disconnect();
+        }
         sharedState.setSession(null);
         disconnectCallback = callback;
     }
@@ -309,11 +311,13 @@ public class OTSessionManager extends ReactContextBaseJavaModule
                     mPublisherViewContainer.removeAllViews();
                 }
                 mPublisherViewContainers.remove(publisherId);
-                if (mSession != null) {
+                if (mSession != null && mPublisher != null) {
                     mSession.unpublish(mPublisher);
                 }
+                if (mPublisher != null) {
                 mPublisher.destroy();
                 mPublishers.remove(publisherId);
+                }
                 mCallback.invoke();
 
             }
