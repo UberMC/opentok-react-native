@@ -5,11 +5,12 @@
 //  Created by Manik Sachdeva on 1/17/18.
 //  Copyright © 2018 Facebook. All rights reserved.
 //
+
 import Foundation
 
 @objc(OTPublisherView)
 class OTPublisherView : UIView {
-  var publisherId: NSString?
+  @objc var publisherId: NSString?
   override init(frame: CGRect) {
     super.init(frame: frame)
   }
@@ -24,3 +25,4 @@ class OTPublisherView : UIView {
     }
   }
 }
+
