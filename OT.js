@@ -34,6 +34,9 @@ const setNativeEvents = (events) => {
   each(events, (eventHandler, eventType) => {
     const allEvents = nativeEvents.listeners();
     if (!allEvents.includes(eventType)) {
+      console.log('add event handler');
+      //console.log(eventType);
+      //console.log(eventHandler);
       nativeEvents.addListener(eventType, eventHandler);
     }
   });
