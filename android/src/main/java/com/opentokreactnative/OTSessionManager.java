@@ -290,6 +290,10 @@ public class OTSessionManager extends ReactContextBaseJavaModule
     public void sendSignal(ReadableMap signal, Callback callback) {
 
         Session mSession = sharedState.getSession();
+        if (mSession == null){
+          callback.invoke();
+          return;
+        }
         mSession.sendSignal(signal.getString("type"), signal.getString("data"));
         callback.invoke();
     }
